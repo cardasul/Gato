@@ -1,4 +1,4 @@
-package com.example.ricardo.gato;
+package com.example.gato;
 
 import org.junit.Test;
 

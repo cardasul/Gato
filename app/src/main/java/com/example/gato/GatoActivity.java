@@ -1,4 +1,4 @@
-package com.example.ricardo.gato;
+package com.example.gato;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
