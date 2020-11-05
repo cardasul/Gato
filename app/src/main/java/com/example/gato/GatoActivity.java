@@ -16,8 +16,9 @@ import java.util.Random;
 
 public class GatoActivity extends AppCompatActivity {
 
-    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, bReiniciar;
-    int Finalizar = 0, turnos = 0;
+    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, bReiniciar, b2player, bVsComputadora;
+    int Finalizar = 0, turnos = 0, jugados = 0;
+    boolean vsComputadora = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,26 +33,59 @@ public class GatoActivity extends AppCompatActivity {
         b7 = findViewById(R.id.btn7);
         b8 = findViewById(R.id.btn8);
         b9 = findViewById(R.id.btn9);
-        bReiniciar=findViewById(R.id.btnReiniciar);
+        b2player = findViewById(R.id.btn2Player);
+        bVsComputadora = findViewById(R.id.btnVsComputadora);
+        bReiniciar = findViewById(R.id.btnReiniciar);
 
-
+        bVsComputadora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vsComputadora = true;
+                bVsComputadora.setBackgroundResource(R.drawable.btn_black);
+                b2player.setBackgroundResource(R.drawable.btn_border);
+                restartM();
+            }
+        });
+        b2player.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vsComputadora = false;
+                bVsComputadora.setBackgroundResource(R.drawable.btn_border);
+                b2player.setBackgroundResource(R.drawable.btn_black);
+                restartM();
+            }
+        });
         bReiniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
+                restartM();
             }
         });
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b1.setText("X");
-                b1.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b1.setText("X");
+
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b1.setText("O");
+                        }
+                        b1.setEnabled(false);
+                        g();
+                        jugados++;
+                    } else {
+                        b1.setText("X");
+                        b1.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -59,11 +93,27 @@ public class GatoActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b2.setText("X");
-                b2.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b2.setText("X");
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b2.setText("O");
+                        }
+                        b2.setEnabled(false);
+                        g();
+                        jugados++;
+
+                    } else {
+                        b2.setText("X");
+                        b2.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -71,11 +121,26 @@ public class GatoActivity extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b3.setText("X");
-                b3.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b3.setText("X");
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b3.setText("O");
+                        }
+                        b3.setEnabled(false);
+                        g();
+                        jugados++;
+                    } else {
+                        b3.setText("X");
+                        b3.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -83,11 +148,26 @@ public class GatoActivity extends AppCompatActivity {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b4.setText("X");
-                b4.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b4.setText("X");
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b4.setText("O");
+                        }
+                        b4.setEnabled(false);
+                        g();
+                        jugados++;
+                    } else {
+                        b4.setText("X");
+                        b4.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -95,11 +175,26 @@ public class GatoActivity extends AppCompatActivity {
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b5.setText("X");
-                b5.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b5.setText("X");
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b5.setText("O");
+                        }
+                        b5.setEnabled(false);
+                        g();
+                        jugados++;
+                    } else {
+                        b5.setText("X");
+                        b5.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -107,11 +202,26 @@ public class GatoActivity extends AppCompatActivity {
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b6.setText("X");
-                b6.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b6.setText("X");
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b6.setText("O");
+                        }
+                        b6.setEnabled(false);
+                        g();
+                        jugados++;
+                    } else {
+                        b6.setText("X");
+                        b6.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -119,11 +229,26 @@ public class GatoActivity extends AppCompatActivity {
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b7.setText("X");
-                b7.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b7.setText("X");
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b7.setText("O");
+                        }
+                        b7.setEnabled(false);
+                        g();
+                        jugados++;
+                    } else {
+                        b7.setText("X");
+                        b7.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -131,11 +256,26 @@ public class GatoActivity extends AppCompatActivity {
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b8.setText("X");
-                b8.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b8.setText("X");
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b8.setText("O");
+                        }
+                        b8.setEnabled(false);
+                        g();
+                        jugados++;
+                    } else {
+                        b8.setText("X");
+                        b8.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -143,11 +283,26 @@ public class GatoActivity extends AppCompatActivity {
         b9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                b9.setText("X");
-                b9.setEnabled(false);
-                g();
                 if (Finalizar == 0) {
-                    jugar1();
+                    if (!vsComputadora) {
+                        if (jugados % 2 == 0) {
+                            System.out.println("Turno jugador 1");
+                            b9.setText("X");
+                        } else {
+                            System.out.println("Turno jugador 2");
+                            b9.setText("O");
+                        }
+                        b9.setEnabled(false);
+                        g();
+                        jugados++;
+                    } else {
+                        b9.setText("X");
+                        b9.setEnabled(false);
+                        g();
+                        if (Finalizar == 0) {
+                            jugar1();
+                        }
+                    }
                 }
             }
         });
@@ -155,15 +310,36 @@ public class GatoActivity extends AppCompatActivity {
     }
 
     private void restartM() {
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
+        //eliminamos lo que tengan los botones
+        b1.setText("");
+        b2.setText("");
+        b3.setText("");
+        b4.setText("");
+        b5.setText("");
+        b6.setText("");
+        b7.setText("");
+        b8.setText("");
+        b9.setText("");
+        //habilitamos todos de nuevo
+        b1.setEnabled(true);
+        b2.setEnabled(true);
+        b3.setEnabled(true);
+        b4.setEnabled(true);
+        b5.setEnabled(true);
+        b6.setEnabled(true);
+        b7.setEnabled(true);
+        b8.setEnabled(true);
+        b9.setEnabled(true);
+        //reseteamos las variables
+        turnos=0;
+        jugados=0;
+        Finalizar=0;
     }
 
     public void jugar1() {
-    //arreglar: 3 -> 9 -> 4 && 4 -> 6 y parecidos.
+        //arreglar: 3 -> 9 -> 4 && 4 -> 6 y parecidos.
 
-    //primer turno
+        //primer turno
         if (b5.isEnabled()) {
             b5.setText("O");
             b5.setEnabled(false);
@@ -271,11 +447,10 @@ public class GatoActivity extends AppCompatActivity {
             b1.setText("O");
             b1.setEnabled(false);
         } //segundo turno ======================================================
-        else if (b5.getText() == "X" && b9.getText() == "X" && b1.isEnabled()){
+        else if (b5.getText() == "X" && b9.getText() == "X" && b1.isEnabled()) {
             b1.setText("O");
             b1.setEnabled(false);
-        }
-        else if (b1.getText() == "X" && b2.getText() == "X" && b3.isEnabled()) {
+        } else if (b1.getText() == "X" && b2.getText() == "X" && b3.isEnabled()) {
             b3.setText("O");
             b3.setEnabled(false);
         } else if (b1.getText() == "X" && b3.getText() == "X" && b2.isEnabled()) {
@@ -354,7 +529,7 @@ public class GatoActivity extends AppCompatActivity {
         } else if (b5.getText() == "X" && b3.getText() == "X" && b1.isEnabled()) {
             b1.setText("O");
             b1.setEnabled(false);
-        } // casos especiales ¿necesarios?
+        } // casos especiales para tapar jugadas
         else if (b1.getText() == "X" && b6.getText() == "X" && b3.isEnabled()) {
             b3.setText("O");
             b3.setEnabled(false);
@@ -362,13 +537,13 @@ public class GatoActivity extends AppCompatActivity {
             b7.setText("O");
             b7.setEnabled(false);
         } // casos restantes random
-        else{
-            if (b1.isEnabled()){
+        else {
+            if (b1.isEnabled()) {
                 b1.setText("O");
                 b1.setEnabled(false);
             }
         }
-        turnos += 1;
+        turnos++;
         g();
     }
 
@@ -389,27 +564,45 @@ public class GatoActivity extends AppCompatActivity {
             whois(b4.getText().toString());
         } else if (b7.getText() == b8.getText() && b8.getText() == b9.getText()) {
             whois(b7.getText().toString());
-        } else if (turnos == 5) {
+        } else if (turnos == 5 || jugados==8) {
             whois("E");
         }
     }
 
     public void whois(String winner) {
-        switch (winner) {
-            case "X":
-                Toast.makeText(getApplicationContext(), "Has ganado", Toast.LENGTH_SHORT).show();
-                //restartM();
-                Finalizar = 1;
-                break;
+        if (vsComputadora) {
+            switch (winner) {
+                case "X":
+                    Toast.makeText(getApplicationContext(), "Has ganado", Toast.LENGTH_SHORT).show();
+                    Finalizar = 1;
+                    break;
 
-            case "O":
-                Toast.makeText(getApplicationContext(), "Has perdido", Toast.LENGTH_SHORT).show();
-                //restartM();
-                break;
+                case "O":
+                    Toast.makeText(getApplicationContext(), "Has perdido", Toast.LENGTH_SHORT).show();
+                    Finalizar = 1;
 
-            case "E":
-                Toast.makeText(getApplicationContext(), "Ha sido un empate",Toast.LENGTH_SHORT).show();
-                //restartM();
+                    break;
+
+                case "E":
+                    Toast.makeText(getApplicationContext(), "Ha sido un empate", Toast.LENGTH_SHORT).show();
+                    Finalizar = 1;
+            }
+        } else {
+            switch (winner) {
+                case "X":
+                    Toast.makeText(getApplicationContext(), "Ha ganado X", Toast.LENGTH_SHORT).show();
+                    Finalizar = 1;
+                    break;
+
+                case "O":
+                    Toast.makeText(getApplicationContext(), "Ha ganado O", Toast.LENGTH_SHORT).show();
+                    Finalizar = 1;
+                    break;
+
+                case "E":
+                    Toast.makeText(getApplicationContext(), "Ha sido un empate", Toast.LENGTH_SHORT).show();
+                    Finalizar = 1;
+            }
         }
     }
 }
