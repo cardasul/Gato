@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
-                android:padding="20dp"
+                android:padding="2dp"
                 android:text="Gato"
                 android:textAlignment="center"
                 android:textColor="#000000"
@@ -35,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:padding="30dp">
+                android:padding="3dp">
 
                 <Button
                     android:id="@+id/btn2Player"
@@ -59,6 +60,66 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtJugar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Jugar con:"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+
+                <RadioGroup
+                    android:id="@+id/rg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbX"
+                        android:layout_width="148dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:width="160dp"
+                        android:background="@drawable/btn_border"
+                        android:buttonTint="#885217"
+                        android:checked="true"
+                        android:text="X"
+                        android:textAlignment="center"
+                        android:textColorHighlight="#885217"
+                        android:textStyle="bold"
+                        android:visibility="invisible"
+                        tools:visibility="visible" />
+
+                    <RadioButton
+                        android:id="@+id/rbO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:width="160dp"
+                        android:background="@drawable/btn_border"
+                        android:buttonTint="#885217"
+                        android:text="O"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:visibility="invisible"
+                        tools:visibility="visible" />
+                </RadioGroup>
+
+
+            </LinearLayout>
+
             <Button
                 android:id="@+id/btnReiniciar"
                 android:layout_width="wrap_content"
@@ -67,42 +128,6 @@
                 android:background="@drawable/btn_reiniciar"
                 android:text="Reiniciar"
                 android:textColor="#FFFFFF" />
-
-            <TextView
-                android:id="@+id/txtJugar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Jugar con"
-                android:visibility="invisible"
-                tools:visibility="visible" />
-
-            <RadioGroup
-                android:id="@+id/rg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RadioButton
-                    android:id="@+id/rbX"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="#885217"
-                    android:checked="true"
-                    android:text="X"
-                    android:textColorHighlight="#885217"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    tools:visibility="visible" />
-
-                <RadioButton
-                    android:id="@+id/rbO"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="#885217"
-                    android:text="O"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    tools:visibility="visible" />
-            </RadioGroup>
 
         </LinearLayout>
 
@@ -115,7 +140,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
