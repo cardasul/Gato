@@ -3,8 +3,10 @@ package com.example.gato;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -24,14 +27,13 @@ import java.util.Random;
 public class GatoActivity extends AppCompatActivity {
 
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, bReiniciar, b2player, bVsComputadora;
-    RadioGroup  rg;
-    RadioButton rbX,rbO;
+    Button rbX, rbO;
     TextView txt;
+    LinearLayout layoutBtn;
     int Finalizar = 0, turnos = 0, jugados = 0;
-    boolean vsComputadora = false;
+    boolean vsComputadora = true;
     private List<Button> desactivados;
-    String jugador="",compu="";
-
+    String jugador = "X", compu = "O";
 
 
     @Override
@@ -47,45 +49,67 @@ public class GatoActivity extends AppCompatActivity {
         b7 = findViewById(R.id.btn7);
         b8 = findViewById(R.id.btn8);
         b9 = findViewById(R.id.btn9);
+        layoutBtn = findViewById(R.id.layoutButtons);
         b2player = findViewById(R.id.btn2Player);
         bVsComputadora = findViewById(R.id.btnVsComputadora);
         bReiniciar = findViewById(R.id.btnReiniciar);
-        rg=findViewById(R.id.rg);
-
-        rbO=findViewById(R.id.rbO);
-        rbX=findViewById(R.id.rbX);
-        txt=findViewById(R.id.txtJugar);
-
-
+        rbO = findViewById(R.id.rbO);
+        rbX = findViewById(R.id.rbX);
+        txt = findViewById(R.id.txtJugar);
+        quienInicia();
         desactivados = new ArrayList<Button>();
-
-        determinarFigura();
-
         bVsComputadora.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
-
                 vsComputadora = true;
                 bVsComputadora.setBackgroundResource(R.drawable.btn_black);
                 b2player.setBackgroundResource(R.drawable.btn_border);
                 restartM();
-
                 rbO.setVisibility(View.VISIBLE);
                 rbX.setVisibility(View.VISIBLE);
                 txt.setVisibility(View.VISIBLE);
+                quienInicia();
+            }
+        });
+        rbO.setOnClickListener(new View.OnClickListener() {
+            @Override
 
-                boolean tu=quienInicia();
+            public void onClick(View view) {
+                jugador = "O";
+                compu = "X";
+                restartM();
+                rbO.setBackgroundResource(R.drawable.btn_black);
+                rbX.setBackgroundResource(R.drawable.btn_border);
+                quienInicia();
+            }
+        });
+        rbX.setOnClickListener(new View.OnClickListener() {
+            @Override
 
+            public void onClick(View view) {
+                jugador = "X";
+                compu = "O";
+                restartM();
+                rbX.setBackgroundResource(R.drawable.btn_black);
+                rbO.setBackgroundResource(R.drawable.btn_border);
+                quienInicia();            }
+        });
+        bVsComputadora.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                vsComputadora = true;
+                bVsComputadora.setBackgroundResource(R.drawable.btn_black);
+                b2player.setBackgroundResource(R.drawable.btn_border);
+                restartM();
+                rbO.setVisibility(View.VISIBLE);
+                rbX.setVisibility(View.VISIBLE);
+                txt.setVisibility(View.VISIBLE);
+                boolean tu = quienInicia();
             }
         });
 
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-               determinarFigura();
-            }
-        });
 
         b2player.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +127,7 @@ public class GatoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 restartM();
-                if(vsComputadora){
+                if (vsComputadora) {
                     quienInicia();
                 }
             }
@@ -339,27 +363,14 @@ public class GatoActivity extends AppCompatActivity {
 
     }
 
-    private void determinarFigura() {
-        if(rbX.isChecked()){
-            jugador="X";
-            compu="O";
-        } else{
-            jugador="O";
-            compu="X";
-        }
-        System.out.println("Jugador: "+jugador);
-        System.out.println("Compu: "+compu);
-    }
 
     private boolean quienInicia() {
-        boolean tu=Math.random() < 0.5;
+        boolean tu = Math.random() < 0.5;
 
-        if(tu){
+        if (tu) {
             //ancla
             Toast.makeText(getApplicationContext(), "Inicias tú", Toast.LENGTH_SHORT).show();
-        } else{
-            rbO.setEnabled(false);
-            rbX.setEnabled(false);
+        } else {
             Toast.makeText(getApplicationContext(), "Inicia Computadora", Toast.LENGTH_SHORT).show();
             //Le da la compu
             Random rnd = new Random();
@@ -420,23 +431,22 @@ public class GatoActivity extends AppCompatActivity {
                     break;
             }
         }
-    return  tu;
+        return tu;
     }
 
     private void pausa() {
         new CountDownTimer(400, 10) {
 
             public void onTick(long millisUntilFinished) {
-               System.out.println("seconds remaining: " + millisUntilFinished / 1000);
-               desactivar();
+                System.out.println("seconds remaining: " + millisUntilFinished / 1000);
+                desactivar();
             }
+
             public void onFinish() {
-                 activar();
+                activar();
                 // //deberia activar solo los que sobran :(
                 g();
                 if (Finalizar == 0) {
-                    rbO.setEnabled(false);
-                    rbX.setEnabled(false);
                     jugar1();
                 }
             }
@@ -493,15 +503,15 @@ public class GatoActivity extends AppCompatActivity {
         b8.setEnabled(true);
         b9.setEnabled(true);
         //reseteamos las variables
-        turnos=0;
-        jugados=0;
-        Finalizar=0;
+        turnos = 0;
+        jugados = 0;
+        Finalizar = 0;
         desactivados.clear();
 
         rbO.setEnabled(true);
         rbX.setEnabled(true);
-
-        determinarFigura();
+        jugador = "X";
+        compu = "O";
     }
 
     public void jugar1() {
@@ -671,7 +681,8 @@ public class GatoActivity extends AppCompatActivity {
             b9.setEnabled(false);
             desactivados.add(b9);
         } else if (b1.getText() == jugador && b9.getText() == jugador && b5.isEnabled()) {
-            b5.setText(compu);;
+            b5.setText(compu);
+            ;
             b5.setEnabled(false);
             desactivados.add(b5);
         } else if (b2.getText() == jugador && b5.getText() == jugador && b8.isEnabled()) {
@@ -793,7 +804,7 @@ public class GatoActivity extends AppCompatActivity {
             whois(b4.getText().toString());
         } else if (b7.getText() == b8.getText() && b8.getText() == b9.getText()) {
             whois(b7.getText().toString());
-        } else if (turnos == 5 || jugados==8) {
+        } else if (turnos == 5 || jugados == 8) {
             whois("E");
         }
     }
@@ -801,17 +812,17 @@ public class GatoActivity extends AppCompatActivity {
     public void whois(String winner) {
 
         if (vsComputadora) {
-            if(winner==jugador){
+            if (winner == jugador) {
                 Toast.makeText(getApplicationContext(), "Has ganado", Toast.LENGTH_SHORT).show();
                 Finalizar = 1;
-            }else if(winner==compu){
+            } else if (winner == compu) {
                 Toast.makeText(getApplicationContext(), "Has perdido", Toast.LENGTH_SHORT).show();
                 Finalizar = 1;
-            }else{
-               if(winner=="E"){
-                   Toast.makeText(getApplicationContext(), "Ha sido un empate", Toast.LENGTH_SHORT).show();
-                   Finalizar = 1;
-               }
+            } else {
+                if (winner == "E") {
+                    Toast.makeText(getApplicationContext(), "Ha sido un empate", Toast.LENGTH_SHORT).show();
+                    Finalizar = 1;
+                }
             }
 
         } else {
