@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Gato3.iml" filepath="$PROJECT_DIR$/.idea/modules/Gato3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Gato3.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Gato3.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Gati.iml" filepath="$PROJECT_DIR$/.idea/modules/Gati.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Gati.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Gati.app.iml" />
     </modules>
   </component>
 </project>

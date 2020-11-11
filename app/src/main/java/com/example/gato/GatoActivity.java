@@ -76,9 +76,9 @@ public class GatoActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View view) {
+                restartM();
                 jugador = "O";
                 compu = "X";
-                restartM();
                 rbO.setBackgroundResource(R.drawable.btn_black);
                 rbX.setBackgroundResource(R.drawable.btn_border);
                 quienInicia();
@@ -88,9 +88,9 @@ public class GatoActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View view) {
+                restartM();
                 jugador = "X";
                 compu = "O";
-                restartM();
                 rbX.setBackgroundResource(R.drawable.btn_black);
                 rbO.setBackgroundResource(R.drawable.btn_border);
                 quienInicia();            }
@@ -430,6 +430,7 @@ public class GatoActivity extends AppCompatActivity {
                     desactivados.add(b9);
                     break;
             }
+            turnos++;
         }
         return tu;
     }
